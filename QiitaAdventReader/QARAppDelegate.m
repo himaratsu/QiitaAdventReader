@@ -18,6 +18,14 @@
     self.window.rootViewController = [self generateControllerStack];
     [self.window makeKeyAndVisible];
     
+    // Appearance
+    //ナビゲーションバーのタイトルの色
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0],UITextAttributeTextColor, nil]];
+    
+
+    //ナビゲーションバー内のコントロールの色
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    
     return YES;
 }
 

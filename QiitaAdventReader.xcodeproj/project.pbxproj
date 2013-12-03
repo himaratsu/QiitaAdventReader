@@ -28,6 +28,15 @@
 		D94EFAEE184E73E80059CCA1 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFAEA184E73E80059CCA1 /* IIViewDeckController.m */; };
 		D94EFAEF184E73E80059CCA1 /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFAEC184E73E80059CCA1 /* IIWrapController.m */; };
 		D94EFAF2184E74C50059CCA1 /* QARMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFAF1184E74C50059CCA1 /* QARMenuViewController.m */; };
+		D94EFAF4184E8CBE0059CCA1 /* Theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAF3184E8CBE0059CCA1 /* Theme.plist */; };
+		D94EFAFD184E8CCF0059CCA1 /* Facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAF5184E8CCF0059CCA1 /* Facebook@2x.png */; };
+		D94EFAFE184E8CCF0059CCA1 /* Favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAF6184E8CCF0059CCA1 /* Favorites@2x.png */; };
+		D94EFAFF184E8CCF0059CCA1 /* Next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAF7184E8CCF0059CCA1 /* Next@2x.png */; };
+		D94EFB00184E8CCF0059CCA1 /* Previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAF8184E8CCF0059CCA1 /* Previous@2x.png */; };
+		D94EFB01184E8CCF0059CCA1 /* Reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAF9184E8CCF0059CCA1 /* Reset@2x.png */; };
+		D94EFB02184E8CCF0059CCA1 /* Top_Charts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAFA184E8CCF0059CCA1 /* Top_Charts@2x.png */; };
+		D94EFB03184E8CCF0059CCA1 /* Twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAFB184E8CCF0059CCA1 /* Twitter@2x.png */; };
+		D94EFB04184E8CCF0059CCA1 /* Upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D94EFAFC184E8CCF0059CCA1 /* Upload@2x.png */; };
 		E8E8F03624F5485196FDC3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3920C922EC045669486C3F7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +86,15 @@
 		D94EFAEC184E73E80059CCA1 /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIWrapController.m; path = QiitaAdventReader/Library/ViewDeck/IIWrapController.m; sourceTree = SOURCE_ROOT; };
 		D94EFAF0184E74C50059CCA1 /* QARMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARMenuViewController.h; path = ViewController/QARMenuViewController.h; sourceTree = "<group>"; };
 		D94EFAF1184E74C50059CCA1 /* QARMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARMenuViewController.m; path = ViewController/QARMenuViewController.m; sourceTree = "<group>"; };
+		D94EFAF3184E8CBE0059CCA1 /* Theme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Theme.plist; path = resources/plist/Theme.plist; sourceTree = "<group>"; };
+		D94EFAF5184E8CCF0059CCA1 /* Facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Facebook@2x.png"; path = "resources/images/Facebook@2x.png"; sourceTree = "<group>"; };
+		D94EFAF6184E8CCF0059CCA1 /* Favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Favorites@2x.png"; path = "resources/images/Favorites@2x.png"; sourceTree = "<group>"; };
+		D94EFAF7184E8CCF0059CCA1 /* Next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Next@2x.png"; path = "resources/images/Next@2x.png"; sourceTree = "<group>"; };
+		D94EFAF8184E8CCF0059CCA1 /* Previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Previous@2x.png"; path = "resources/images/Previous@2x.png"; sourceTree = "<group>"; };
+		D94EFAF9184E8CCF0059CCA1 /* Reset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reset@2x.png"; path = "resources/images/Reset@2x.png"; sourceTree = "<group>"; };
+		D94EFAFA184E8CCF0059CCA1 /* Top_Charts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Top_Charts@2x.png"; path = "resources/images/Top_Charts@2x.png"; sourceTree = "<group>"; };
+		D94EFAFB184E8CCF0059CCA1 /* Twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Twitter@2x.png"; path = "resources/images/Twitter@2x.png"; sourceTree = "<group>"; };
+		D94EFAFC184E8CCF0059CCA1 /* Upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Upload@2x.png"; path = "resources/images/Upload@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +216,14 @@
 		D94EFAAD184E6BE80059CCA1 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D94EFAF5184E8CCF0059CCA1 /* Facebook@2x.png */,
+				D94EFAF6184E8CCF0059CCA1 /* Favorites@2x.png */,
+				D94EFAF7184E8CCF0059CCA1 /* Next@2x.png */,
+				D94EFAF8184E8CCF0059CCA1 /* Previous@2x.png */,
+				D94EFAF9184E8CCF0059CCA1 /* Reset@2x.png */,
+				D94EFAFA184E8CCF0059CCA1 /* Top_Charts@2x.png */,
+				D94EFAFB184E8CCF0059CCA1 /* Twitter@2x.png */,
+				D94EFAFC184E8CCF0059CCA1 /* Upload@2x.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -205,6 +231,7 @@
 		D94EFAC1184E70460059CCA1 /* plist */ = {
 			isa = PBXGroup;
 			children = (
+				D94EFAF3184E8CBE0059CCA1 /* Theme.plist */,
 			);
 			name = plist;
 			sourceTree = "<group>";
@@ -336,9 +363,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D94EFB01184E8CCF0059CCA1 /* Reset@2x.png in Resources */,
+				D94EFB03184E8CCF0059CCA1 /* Twitter@2x.png in Resources */,
+				D94EFAF4184E8CBE0059CCA1 /* Theme.plist in Resources */,
+				D94EFB04184E8CCF0059CCA1 /* Upload@2x.png in Resources */,
+				D94EFB00184E8CCF0059CCA1 /* Previous@2x.png in Resources */,
 				D94EFA81184E5BAC0059CCA1 /* Images.xcassets in Resources */,
+				D94EFAFD184E8CCF0059CCA1 /* Facebook@2x.png in Resources */,
 				D94EFA73184E5BAC0059CCA1 /* InfoPlist.strings in Resources */,
+				D94EFAFF184E8CCF0059CCA1 /* Next@2x.png in Resources */,
+				D94EFAFE184E8CCF0059CCA1 /* Favorites@2x.png in Resources */,
 				D94EFA7C184E5BAC0059CCA1 /* Main.storyboard in Resources */,
+				D94EFB02184E8CCF0059CCA1 /* Top_Charts@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

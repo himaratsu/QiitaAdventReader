@@ -17,6 +17,9 @@
 
 @interface QARViewController ()
 <UITableViewDataSource, UITableViewDelegate>
+{
+    UIRefreshControl *_refresh;
+}
 
 @property (nonatomic) NSMutableArray *feeds;
 @property (nonatomic) NSDictionary *currentTheme;
@@ -33,15 +36,20 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
 {
     [super viewDidLoad];
     
+    // init propery
     self.feeds = [NSMutableArray array];
+    self.currentTheme = [[QARThemeManager sharedManager] currentTheme];
+    
+    // refresh setting
+    _refresh = [[UIRefreshControl alloc] init];
+    [_refresh addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
+    [_tableView addSubview:_refresh];
     
     // KVO
     [[QARThemeManager sharedManager] addObserver:self
                                       forKeyPath:@"currentTheme"
                                          options:NSKeyValueObservingOptionNew
                                          context:nil];
-    
-    self.currentTheme = [[QARThemeManager sharedManager] currentTheme];
     
     [self reloadData];
     
@@ -59,6 +67,9 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     if (_currentTheme == nil) {
         return ;
     }
+    
+    [_refresh beginRefreshing];
+    
     NSString *url = [NSString stringWithFormat:kApiBaseFormat, _currentTheme[@"feed_url"]];
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
@@ -73,6 +84,8 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
+    [_refresh endRefreshing];
 }
 
 #pragma mark - UITableViewDataSource
@@ -88,7 +101,7 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     QARListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.titleLabel.text = _feeds[indexPath.row][@"title"];
-    cell.dateLabel.text = [NSString stringWithFormat:@"%d", [_feeds count] - indexPath.row];
+    cell.dateLabel.text = [NSString stringWithFormat:@"%.2d", [_feeds count] - indexPath.row];
     cell.authorLabel.text = _feeds[indexPath.row][@"author"];
     return cell;
 }
