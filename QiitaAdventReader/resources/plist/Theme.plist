@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>iOS</string>
+		<key>feed_url</key>
+		<string>http://qiita.com/advent-calendar/2013/ios/feed</string>
+		<key>select_cnt</key>
+		<string>0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>iBeacon</string>
+		<key>feed_url</key>
+		<string>http://qiita.com/advent-calendar/2013/ibeacon/feed</string>
+		<key>select_cnt</key>
+		<string>0</string>
+	</dict>
+</array>
+</plist>
