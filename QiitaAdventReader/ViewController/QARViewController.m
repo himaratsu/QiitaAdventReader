@@ -99,10 +99,21 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *dayStr = [NSString stringWithFormat:@"%.2d", [_feeds count] - indexPath.row];
+    
     QARListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.titleLabel.text = _feeds[indexPath.row][@"title"];
-    cell.dateLabel.text = [NSString stringWithFormat:@"%.2d", [_feeds count] - indexPath.row];
+    cell.dateLabel.text = dayStr;
     cell.authorLabel.text = _feeds[indexPath.row][@"author"];
+    
+    // today
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd";
+    NSDate *date = [NSDate date];
+    NSString *todayStr = [dateFormatter stringFromDate:date];
+    
+    cell.isToday = [todayStr isEqualToString:dayStr];
+    
     return cell;
 }
 
