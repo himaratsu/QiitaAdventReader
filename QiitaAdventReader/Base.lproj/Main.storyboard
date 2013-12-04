@@ -28,7 +28,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ここにタイトルここにタイトルここにタイトルここにタイトルここにタイトル" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="207" translatesAutoresizingMaskIntoConstraints="NO" id="mk0-6T-lhY" userLabel="titleLabel">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ここにタイトルここにタイトルここにタイトルここにタイトルここにタイトル" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="207" translatesAutoresizingMaskIntoConstraints="NO" id="mk0-6T-lhY" userLabel="titleLabel">
                                                     <rect key="frame" x="70" y="11" width="207" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -38,10 +38,10 @@
                                                     <rect key="frame" x="12" y="19" width="46" height="61"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="38"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-Cw-cxt" userLabel="authorLabel">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYs-Cw-cxt" userLabel="authorLabel">
                                                     <rect key="frame" x="70" y="62" width="197" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -64,7 +64,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="UYs-Cw-cxt" secondAttribute="bottom" constant="17" id="CXd-vg-sU3"/>
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="trailing" secondItem="UYs-Cw-cxt" secondAttribute="trailing" constant="10" id="KgZ-RM-uWT"/>
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="leading" secondItem="UYs-Cw-cxt" secondAttribute="leading" id="Txm-jn-sMY"/>
+                                                <constraint firstItem="UYs-Cw-cxt" firstAttribute="top" secondItem="mk0-6T-lhY" secondAttribute="bottom" constant="5" id="ZLb-Rr-BhL"/>
                                                 <constraint firstItem="UYs-Cw-cxt" firstAttribute="top" secondItem="mk0-6T-lhY" secondAttribute="bottom" constant="5" id="dfd-GL-9Cr"/>
+                                                <constraint firstItem="mk0-6T-lhY" firstAttribute="top" secondItem="NxN-dv-EiC" secondAttribute="top" constant="11" id="hpS-k3-0TH"/>
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="leading" secondItem="Rzw-n9-7D2" secondAttribute="trailing" constant="12" id="o5S-kU-AcW"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -135,7 +137,7 @@
                                     <outlet property="delegate" destination="aA9-bA-Cog" id="4ke-MN-3oq"/>
                                 </connections>
                             </webView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hKA-Ei-MjN">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKA-Ei-MjN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
@@ -264,6 +266,26 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.94901960784313721" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GoTopCell" rowHeight="65" id="XS1-Oz-u3r">
+                                        <rect key="frame" x="0.0" y="135" width="320" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XS1-Oz-u3r" id="PKs-N1-isH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="SortNoticeCell" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="pOw-rZ-jRD">
+                                                    <rect key="frame" x="14" y="11" width="243" height="42"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">リストは閲覧回数順に自動ソートされます。
+ここをタップすると先頭に戻ります。</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.93333333330000001" green="0.94901960780000005" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

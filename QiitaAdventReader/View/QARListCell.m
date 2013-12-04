@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     _todayLabel.layer.cornerRadius = 2.0f;
     _todayLabel.layer.masksToBounds = YES;
+    
+    self.isToday = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

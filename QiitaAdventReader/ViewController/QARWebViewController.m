@@ -7,8 +7,12 @@
 //
 
 #import "QARWebViewController.h"
+
+#import "UIAlertView+Blocks.h"
+#import "UIActionSheet+Blocks.h"
+
+#import <Social/Social.h>
 #import <NJKWebViewProgress.h>
-#import <BlocksKit.h>
 #import <PocketAPI.h>
 #import <SVProgressHUD.h>
 
@@ -94,35 +98,108 @@
 }
 
 - (IBAction)actionBtnTouched:(id)sender {
+    NSURL *currentPageURL = _webView.request.URL;
+    
+    // copy url
+    RIButtonItem *copyUrlItem = [RIButtonItem itemWithLabel:@"URLをコピー" action:^{
+        UIPasteboard *pastebd = [UIPasteboard generalPasteboard];
+        [pastebd setValue:currentPageURL.absoluteString forPasteboardType: @"public.utf8-plain-text"];
+    }];
+    
+    // open in safari
+    RIButtonItem *safariItem = [RIButtonItem itemWithLabel:@"Safariで開く" action:^{
+        [[UIApplication sharedApplication] openURL:currentPageURL];
+    }];
+    
+    // add to pocket
+    RIButtonItem *pocketItem = [RIButtonItem itemWithLabel:@"Pocketに追加する" action:^{
+        [SVProgressHUD show];
+        [[PocketAPI sharedAPI] saveURL:currentPageURL
+                               handler: ^(PocketAPI *API, NSURL *URL, NSError *error){
+                                   if(error){
+                                       // failed
+                                       [SVProgressHUD showErrorWithStatus:@"Failed"];
+                                   }
+                                   else{
+                                       // success
+                                       [SVProgressHUD showSuccessWithStatus:@"Success"];
+                                   }
+                               }];
+    }];
+    
+    // share with twitter
+    RIButtonItem *twitterItem = [RIButtonItem itemWithLabel:@"Twitterでシェア" action:^{
+        [self postToTwitter:currentPageURL];
+
+    }];
+    
+    // share with facebook
+    RIButtonItem *facebookItem = [RIButtonItem itemWithLabel:@"Facebookでシェア" action:^{
+        [self postToFacebook:currentPageURL];
+    }];
+    
+    // cancel
+    RIButtonItem *cancelItem = [RIButtonItem itemWithLabel:@"キャンセル"];
     
     
-//    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"アクションを選択してください"];
-//    
-//    NSURL *currentPageURL = _webView.request.URL;
-//    
-//    [sheet addButtonWithTitle:@"Safariで開く" handler:^{
-//        [[UIApplication sharedApplication] openURL:currentPageURL];
-//    }];
-//    [sheet addButtonWithTitle:@"Pocketに追加" handler:^{
-//        [SVProgressHUD show];
-//        [[PocketAPI sharedAPI] saveURL:currentPageURL
-//                               handler: ^(PocketAPI *API, NSURL *URL, NSError *error){
-//                                   if(error){
-//                                       // there was an issue connecting to Pocket
-//                                       // present some UI to notify if necessary
-//                                       [SVProgressHUD showErrorWithStatus:@"Failed"];
-//                                   }else{
-//                                       // the URL was saved successfully
-//                                       [SVProgressHUD showSuccessWithStatus:@"Success"];
-//                                   }
-//                               }];
-//    }];
-//    [sheet setCancelButtonIndex:[sheet addButtonWithTitle:@"Cancel"]];
-//    [sheet showInView:self.view];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"アクションを選択してください"
+                                               cancelButtonItem:cancelItem
+                                          destructiveButtonItem:nil
+                                               otherButtonItems:copyUrlItem,
+                            safariItem,
+                            pocketItem,
+                            twitterItem,
+                            facebookItem, nil];
+    [sheet showInView:self.view];
 }
 
 - (IBAction)refreshBtnTouched:(id)sender {
     [_webView reload];
+}
+
+
+#pragma mark - Post SNS
+
+- (void)postToTwitter:(NSURL *)URL {
+    SLComposeViewController *vc = [SLComposeViewController
+                                   composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [vc setInitialText:[NSString stringWithFormat:@"%@ %@", self.title, @"via Q-Advent Calendar"]];
+    [vc addURL:URL];
+    [vc setCompletionHandler:^(SLComposeViewControllerResult result) {
+        if (result == SLComposeViewControllerResultDone) {
+            // post success
+        }
+        else {
+            [[[UIAlertView alloc] initWithTitle:@"Post Failed"
+                                        message:@"エラーが発生しました。\nお手数ですが再度お試しください"
+                                       delegate:nil
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"OK", nil]
+             show];
+        }
+    }];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)postToFacebook:(NSURL *)URL {
+    SLComposeViewController *vc = [SLComposeViewController
+                                   composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [vc setInitialText:[NSString stringWithFormat:@"%@ %@", self.title, @"via Q-Advent Calendar"]];
+    [vc addURL:URL];
+    [vc setCompletionHandler:^(SLComposeViewControllerResult result) {
+        if (result == SLComposeViewControllerResultDone) {
+            // post success
+        }
+        else {
+            [[[UIAlertView alloc] initWithTitle:@"Post Failed"
+                                        message:@"エラーが発生しました。\nお手数ですが再度お試しください"
+                                       delegate:nil
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"OK", nil]
+             show];
+        }
+    }];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 

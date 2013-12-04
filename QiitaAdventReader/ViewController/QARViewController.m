@@ -30,7 +30,7 @@
 @implementation QARViewController
 
 // convert xml -> json
-static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=%@&num=25";
+static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=%@&num=-1";
 
 - (void)viewDidLoad
 {
@@ -59,6 +59,12 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"currentTheme"]) {
         self.currentTheme = change[@"new"];
+        
+        // clear feeds
+        self.feeds = [NSMutableArray array];
+        self.title = @"loading...";
+        [_tableView reloadData];
+        
         [self reloadData];
     }
 }
@@ -77,7 +83,6 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         self.feeds = responseObject[@"responseData"][@"feed"][@"entries"];
-        
         self.title = _currentTheme[@"title"];
         [_tableView reloadData];
         
@@ -106,13 +111,13 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     cell.dateLabel.text = dayStr;
     cell.authorLabel.text = _feeds[indexPath.row][@"author"];
     
-    // today
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"dd";
-    NSDate *date = [NSDate date];
-    NSString *todayStr = [dateFormatter stringFromDate:date];
-    
-    cell.isToday = [todayStr isEqualToString:dayStr];
+    // TODO: つくりたいが現行の仕様では記載されてた日時がとれない
+    // today jdge
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"dd";
+//    NSDate *date = [NSDate date];
+//    NSString *todayStr = [dateFormatter stringFromDate:date];
+//    cell.isToday = [todayStr isEqualToString:dayStr];
     
     return cell;
 }
