@@ -91,6 +91,22 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
+    
+    // save
+    NSString *pushStatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushSetting"];
+    if (pushStatus == nil || [pushStatus isEqualToString:@""]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"PushSetting"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    // fail
+    NSString *pushStatus = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushSetting"];
+    if (pushStatus == nil || [pushStatus isEqualToString:@""]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"PushSetting"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 - (void)application:(UIApplication *)application
