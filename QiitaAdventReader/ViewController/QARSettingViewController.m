@@ -60,13 +60,13 @@ static NSString * const kLicenseFileName = @"license.html";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
+    cell.detailTextLabel.textColor = [UIColor colorWithRed:41/255.0 green:128/255.0 blue:185/255.0 alpha:1.0];
+    
     if (indexPath.section == 0) {
         cell.textLabel.text = @"Qiita";
         cell.detailTextLabel.text = @"Advent Calendar 2013";
     }
     else if (indexPath.section == 1) {
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:41/255.0 green:128/255.0 blue:185/255.0 alpha:1.0];
-        
         if (indexPath.row == 0) {
             cell.textLabel.text = @"バージョン";
             NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];

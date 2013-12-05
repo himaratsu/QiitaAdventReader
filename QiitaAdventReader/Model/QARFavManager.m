@@ -29,7 +29,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.favList = [NSMutableArray array];
+        self.favList = [self loadFavList];
     }
     return self;
 }
