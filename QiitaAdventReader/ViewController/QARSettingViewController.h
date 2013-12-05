@@ -1,5 +1,5 @@
 //
-//  QARWebViewController.h
+//  QARSettingViewController.h
 //  QiitaAdventReader
 //
 //  Created by rhiramat on 2013/12/04.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QARWebViewController : UIViewController
-
-@property (nonatomic) NSString *loadUrl;
-@property (nonatomic) BOOL isShowToolBar;
+@interface QARSettingViewController : UIViewController
 
 @end

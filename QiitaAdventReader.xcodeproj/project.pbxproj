@@ -41,6 +41,7 @@
 		D9B5A9C1184EC4C600DC5A28 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B5A9BD184EC4C600DC5A28 /* UIActionSheet+Blocks.m */; };
 		D9B5A9C2184EC4C600DC5A28 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B5A9BF184EC4C600DC5A28 /* UIAlertView+Blocks.m */; };
 		D9B5A9C4184EC87700DC5A28 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B5A9C3184EC87700DC5A28 /* Social.framework */; };
+		D9BCEA9F184F79B100D34F21 /* QARSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */; };
 		E8E8F03624F5485196FDC3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3920C922EC045669486C3F7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,8 @@
 		D9B5A9BE184EC4C600DC5A28 /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "Library/UIAlertView-Blocks/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		D9B5A9BF184EC4C600DC5A28 /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "Library/UIAlertView-Blocks/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		D9B5A9C3184EC87700DC5A28 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D9BCEA9D184F79B100D34F21 /* QARSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARSettingViewController.h; path = ViewController/QARSettingViewController.h; sourceTree = "<group>"; };
+		D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARSettingViewController.m; path = ViewController/QARSettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +297,8 @@
 				D94EFAE4184E73CB0059CCA1 /* QARWebViewController.m */,
 				D94EFAF0184E74C50059CCA1 /* QARMenuViewController.h */,
 				D94EFAF1184E74C50059CCA1 /* QARMenuViewController.m */,
+				D9BCEA9D184F79B100D34F21 /* QARSettingViewController.h */,
+				D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				D94EFAF2184E74C50059CCA1 /* QARMenuViewController.m in Sources */,
 				D9B5A9C0184EC4C600DC5A28 /* RIButtonItem.m in Sources */,
 				D94EFADF184E73B70059CCA1 /* QARListCell.m in Sources */,
+				D9BCEA9F184F79B100D34F21 /* QARSettingViewController.m in Sources */,
 				D94EFA75184E5BAC0059CCA1 /* main.m in Sources */,
 				D94EFAE5184E73CB0059CCA1 /* QARViewController.m in Sources */,
 				D9B5A9C1184EC4C600DC5A28 /* UIActionSheet+Blocks.m in Sources */,

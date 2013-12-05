@@ -24,6 +24,8 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
@@ -42,6 +44,8 @@
     _webView.delegate = _progressProxy;
     _progressProxy.webViewProxyDelegate = self;
     _progressProxy.progressDelegate = self;
+    
+    _toolBar.hidden = !_isShowToolBar;
     
     // start request
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]];
@@ -203,6 +207,11 @@
 }
 
 
+#pragma mark - Getter / Setter
 
+- (void)setIsShowToolBar:(BOOL)isShowToolBar {
+    _isShowToolBar = isShowToolBar;
+    _toolBar.hidden = !_isShowToolBar;
+}
 
 @end
