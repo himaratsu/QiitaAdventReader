@@ -21,7 +21,7 @@
 @implementation QARSettingViewController
 
 static NSString * const kQiitaAdventUrl = @"http://qiita.com/advent-calendar/2013";
-static NSString * const kOwnerTwUrl = @"https://twitter.com/himara2";
+static NSString * const kAppStoreUrl = @"";
 static NSString * const kGHIssueUrl = @"https://github.com/himaratsu/QiitaAdventReader/issues";
 static NSString * const kLicenseFileName = @"license.html";
 
@@ -43,7 +43,7 @@ static NSString * const kLicenseFileName = @"license.html";
         return 1;
     }
     else {
-        return 3;
+        return 4;
     }
 }
 
@@ -52,7 +52,7 @@ static NSString * const kLicenseFileName = @"license.html";
         return @"一般";
     }
     else if (section == 1) {
-        return @"お問い合わせ";
+        return @"このアプリについて";
     }
     return @"";
 }
@@ -65,21 +65,28 @@ static NSString * const kLicenseFileName = @"license.html";
         cell.detailTextLabel.text = @"Advent Calendar 2013";
     }
     else if (indexPath.section == 1) {
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:41/255.0 green:128/255.0 blue:185/255.0 alpha:1.0];
+        
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"開発者";
-            cell.detailTextLabel.text = @"@himara2";
+            cell.textLabel.text = @"バージョン";
+            NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            cell.detailTextLabel.text = version;
+            cell.detailTextLabel.textColor = [UIColor grayColor];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         else if (indexPath.row == 1) {
+            cell.textLabel.text = @"レビューを書く";
+            cell.detailTextLabel.text = @"AppStore";
+        }
+        else if (indexPath.row == 2) {
             cell.textLabel.text = @"お問い合わせ";
             cell.detailTextLabel.text = @"GitHub";
         }
-        else if (indexPath.row == 2) {
+        else if (indexPath.row == 3) {
             cell.textLabel.text = @"オープンソースライセンス";
             cell.detailTextLabel.text = @"";
         }
     }
-    
-    cell.detailTextLabel.textColor = [UIColor colorWithRed:41/255.0 green:128/255.0 blue:185/255.0 alpha:1.0];
     
     return cell;
 }
@@ -94,13 +101,13 @@ static NSString * const kLicenseFileName = @"license.html";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kQiitaAdventUrl]];
     }
     else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kOwnerTwUrl]];
-        }
-        else if (indexPath.row == 1) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kGHIssueUrl]];
+        if (indexPath.row == 1) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
         }
         else if (indexPath.row == 2) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kGHIssueUrl]];
+        }
+        else if (indexPath.row == 3) {
             // show license
             [self performSegueWithIdentifier:@"showWeb" sender:nil];
         }

@@ -30,7 +30,6 @@
 		D9B5A9C0184EC4C600DC5A28 /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B5A9BB184EC4C600DC5A28 /* RIButtonItem.m */; };
 		D9B5A9C1184EC4C600DC5A28 /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B5A9BD184EC4C600DC5A28 /* UIActionSheet+Blocks.m */; };
 		D9B5A9C2184EC4C600DC5A28 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B5A9BF184EC4C600DC5A28 /* UIAlertView+Blocks.m */; };
-		D9B5A9C4184EC87700DC5A28 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B5A9C3184EC87700DC5A28 /* Social.framework */; };
 		D9BCEA9F184F79B100D34F21 /* QARSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */; };
 		D9BDACFE185005BF003FBCCF /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = D9BDACFC185005BF003FBCCF /* license.html */; };
 		D9BDACFF185005BF003FBCCF /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D9BDACFD185005BF003FBCCF /* style.css */; };
@@ -52,6 +51,7 @@
 		D9DD68AD1850B58A00BFF896 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DD68AC1850B58A00BFF896 /* Security.framework */; };
 		D9DD68AF1850B59100BFF896 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DD68AE1850B59100BFF896 /* StoreKit.framework */; };
 		D9DD68B11850B59F00BFF896 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DD68B01850B59F00BFF896 /* SystemConfiguration.framework */; };
+		D9DD68B21850C8A700BFF896 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B5A9C3184EC87700DC5A28 /* Social.framework */; };
 		E8E8F03624F5485196FDC3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3920C922EC045669486C3F7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9DD68B21850C8A700BFF896 /* Social.framework in Frameworks */,
 				D9DD68B11850B59F00BFF896 /* SystemConfiguration.framework in Frameworks */,
 				D9DD68AF1850B59100BFF896 /* StoreKit.framework in Frameworks */,
 				D9DD68AD1850B58A00BFF896 /* Security.framework in Frameworks */,
@@ -143,7 +144,6 @@
 				D94EFA6B184E5BAB0059CCA1 /* CoreGraphics.framework in Frameworks */,
 				D9DD68A31850B56200BFF896 /* CFNetwork.framework in Frameworks */,
 				D9DD68A11850B55A00BFF896 /* AudioToolbox.framework in Frameworks */,
-				D9B5A9C4184EC87700DC5A28 /* Social.framework in Frameworks */,
 				D94EFA6D184E5BAC0059CCA1 /* UIKit.framework in Frameworks */,
 				D94EFA69184E5BAB0059CCA1 /* Foundation.framework in Frameworks */,
 				D9DD689F1850B54A00BFF896 /* Parse.framework in Frameworks */,

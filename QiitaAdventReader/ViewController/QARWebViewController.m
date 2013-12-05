@@ -172,40 +172,24 @@
                                    composeViewControllerForServiceType:SLServiceTypeTwitter];
     [vc setInitialText:[NSString stringWithFormat:@"%@ %@", self.title, @"via Q-Advent Calendar"]];
     [vc addURL:URL];
-    [vc setCompletionHandler:^(SLComposeViewControllerResult result) {
-        if (result == SLComposeViewControllerResultDone) {
-            // post success
-        }
-        else {
-            [[[UIAlertView alloc] initWithTitle:@"Post Failed"
-                                        message:@"エラーが発生しました。\nお手数ですが再度お試しください"
-                                       delegate:nil
-                              cancelButtonTitle:nil
-                              otherButtonTitles:@"OK", nil]
-             show];
-        }
-    }];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)postToFacebook:(NSURL *)URL {
+    if (![[UIApplication sharedApplication] canOpenURL:URL]) {
+        [[[UIAlertView alloc] initWithTitle:@"Post Failed"
+                                    message:@"エラーが発生しました。\nお手数ですが再度お試しください"
+                                   delegate:nil
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"OK", nil]
+         show];
+        return;
+    }
+    
     SLComposeViewController *vc = [SLComposeViewController
                                    composeViewControllerForServiceType:SLServiceTypeFacebook];
     [vc setInitialText:[NSString stringWithFormat:@"%@ %@", self.title, @"via Q-Advent Calendar"]];
     [vc addURL:URL];
-    [vc setCompletionHandler:^(SLComposeViewControllerResult result) {
-        if (result == SLComposeViewControllerResultDone) {
-            // post success
-        }
-        else {
-            [[[UIAlertView alloc] initWithTitle:@"Post Failed"
-                                        message:@"エラーが発生しました。\nお手数ですが再度お試しください"
-                                       delegate:nil
-                              cancelButtonTitle:nil
-                              otherButtonTitles:@"OK", nil]
-             show];
-        }
-    }];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
