@@ -115,8 +115,6 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     
     
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        
         if ([responseObject[@"responseStatus"] intValue] == 200) {
             _myDataSource.currentStatus = QAR_CONNECTION_STATUS_NORMAL;
             self.feeds = responseObject[@"responseData"][@"feed"][@"entries"];

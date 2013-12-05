@@ -9,6 +9,8 @@
 #ifndef QiitaAdventReader_Const_h
 #define QiitaAdventReader_Const_h
 
-#define POCKET_API_KEY  @""     // pocket api key
+#define POCKET_API_KEY  @""
+#define PARSE_API_KEY   @""
+#define PARSE_CLIENT_KEY    @""
 
 #endif

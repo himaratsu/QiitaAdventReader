@@ -11,12 +11,21 @@
 
 #import "Const.h"
 #import <PocketAPI.h>
+#import <Parse/Parse.h>
 
 @implementation QARAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[PocketAPI sharedAPI] setConsumerKey:POCKET_API_KEY];
+    [Parse setApplicationId:PARSE_API_KEY
+                  clientKey:PARSE_CLIENT_KEY];
+    
+    // push notif.
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeAlert|
+     UIRemoteNotificationTypeSound];
     
     // ViewDeck用
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -58,6 +67,21 @@
         // if you handle your own custom url-schemes, do it here
         return NO;
     }
+}
+
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 
