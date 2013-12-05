@@ -13,6 +13,7 @@
 #import "Const.h"
 #import <PocketAPI.h>
 #import <Parse/Parse.h>
+#import "Crittercism.h"
 #import "UIAlertView+Blocks.h"
 
 @implementation QARAppDelegate
@@ -22,6 +23,7 @@
     [[PocketAPI sharedAPI] setConsumerKey:POCKET_API_KEY];
     [Parse setApplicationId:PARSE_API_KEY
                   clientKey:PARSE_CLIENT_KEY];
+    [Crittercism enableWithAppID:CRITTERCISM_API_KEY];
     
     // push notif. setting
     [application registerForRemoteNotificationTypes:
