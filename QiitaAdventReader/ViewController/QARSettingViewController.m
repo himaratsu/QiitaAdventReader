@@ -96,6 +96,7 @@ static NSString * const kLicenseFileName = @"license.html";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.viewDeckController closeLeftView];
     
     if (indexPath.section == 0) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kQiitaAdventUrl]];

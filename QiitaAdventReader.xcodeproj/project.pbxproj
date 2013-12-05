@@ -52,6 +52,7 @@
 		D9DD68AF1850B59100BFF896 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DD68AE1850B59100BFF896 /* StoreKit.framework */; };
 		D9DD68B11850B59F00BFF896 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DD68B01850B59F00BFF896 /* SystemConfiguration.framework */; };
 		D9DD68B21850C8A700BFF896 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B5A9C3184EC87700DC5A28 /* Social.framework */; };
+		D9FDEC121850CE8C000DF58A /* Upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9FDEC111850CE8C000DF58A /* Upload@2x.png */; };
 		E8E8F03624F5485196FDC3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3920C922EC045669486C3F7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		D9DD68AC1850B58A00BFF896 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D9DD68AE1850B59100BFF896 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D9DD68B01850B59F00BFF896 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D9FDEC111850CE8C000DF58A /* Upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Upload@2x.png"; path = "resources/images/Upload@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 				D9DD689A1850B1E700BFF896 /* icon_120.png */,
 				D9BDAD0818505100003FBCCF /* corner_fav_on@2x.png */,
 				D9BDAD0918505100003FBCCF /* corner_fav@2x.png */,
+				D9FDEC111850CE8C000DF58A /* Upload@2x.png */,
 				D94EFAF7184E8CCF0059CCA1 /* Next@2x.png */,
 				D94EFAF8184E8CCF0059CCA1 /* Previous@2x.png */,
 				D94EFAF9184E8CCF0059CCA1 /* Reset@2x.png */,
@@ -426,6 +429,7 @@
 				D94EFA81184E5BAC0059CCA1 /* Images.xcassets in Resources */,
 				D94EFA73184E5BAC0059CCA1 /* InfoPlist.strings in Resources */,
 				D94EFAFF184E8CCF0059CCA1 /* Next@2x.png in Resources */,
+				D9FDEC121850CE8C000DF58A /* Upload@2x.png in Resources */,
 				D9BDACFF185005BF003FBCCF /* style.css in Resources */,
 				D94EFA7C184E5BAC0059CCA1 /* Main.storyboard in Resources */,
 				D9DD689B1850B1E700BFF896 /* icon_120.png in Resources */,

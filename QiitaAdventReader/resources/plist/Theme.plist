@@ -508,14 +508,6 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>PostgreSQL</string>
-		<key>feed_url</key>
-		<string>http://qiita.com/advent-calendar/2013/postgresql/feed</string>
-		<key>select_cnt</key>
-		<string>0</string>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string>Windows Azure</string>
 		<key>feed_url</key>
 		<string>http://qiita.com/advent-calendar/2013/azure/feed</string>

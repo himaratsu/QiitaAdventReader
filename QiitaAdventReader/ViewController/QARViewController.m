@@ -166,6 +166,7 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.viewDeckController closeLeftView];
 }
 
 
