@@ -1,4 +1,6 @@
 QiitaAdventReader.xcworkspace
+Const.h
+
 # Xcode
 .DS_Store
 */build/*
