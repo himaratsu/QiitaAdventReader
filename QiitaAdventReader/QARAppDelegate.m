@@ -9,10 +9,15 @@
 #import "QARAppDelegate.h"
 #import "IIViewDeckController.h"
 
+#import "Const.h"
+#import <PocketAPI.h>
+
 @implementation QARAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[PocketAPI sharedAPI] setConsumerKey:POCKET_API_KEY];
+    
     // ViewDeck用
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self generateControllerStack];
@@ -41,6 +46,18 @@
     deckController.closeSlideAnimationDuration = 0.25;
     
     return deckController;
+}
+
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+ sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    if ([[PocketAPI sharedAPI] handleOpenURL:url]) {
+        return YES;
+    }
+    else{
+        // if you handle your own custom url-schemes, do it here
+        return NO;
+    }
 }
 
 

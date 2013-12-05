@@ -18,8 +18,6 @@
 		D94EFA88184E5BAC0059CCA1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94EFA87184E5BAC0059CCA1 /* XCTest.framework */; };
 		D94EFA89184E5BAC0059CCA1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94EFA68184E5BAB0059CCA1 /* Foundation.framework */; };
 		D94EFA8A184E5BAC0059CCA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94EFA6C184E5BAC0059CCA1 /* UIKit.framework */; };
-		D94EFA92184E5BAC0059CCA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D94EFA90184E5BAC0059CCA1 /* InfoPlist.strings */; };
-		D94EFA94184E5BAC0059CCA1 /* QiitaAdventReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFA93184E5BAC0059CCA1 /* QiitaAdventReaderTests.m */; };
 		D94EFADB184E739E0059CCA1 /* QARThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFADA184E739E0059CCA1 /* QARThemeManager.m */; };
 		D94EFADF184E73B70059CCA1 /* QARListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFADE184E73B70059CCA1 /* QARListCell.m */; };
 		D94EFAE5184E73CB0059CCA1 /* QARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94EFAE2184E73CB0059CCA1 /* QARViewController.m */; };
@@ -77,9 +75,6 @@
 		D94EFA80184E5BAC0059CCA1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D94EFA86184E5BAC0059CCA1 /* QiitaAdventReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QiitaAdventReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D94EFA87184E5BAC0059CCA1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D94EFA8F184E5BAC0059CCA1 /* QiitaAdventReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QiitaAdventReaderTests-Info.plist"; sourceTree = "<group>"; };
-		D94EFA91184E5BAC0059CCA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D94EFA93184E5BAC0059CCA1 /* QiitaAdventReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QiitaAdventReaderTests.m; sourceTree = "<group>"; };
 		D94EFAD9184E739E0059CCA1 /* QARThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARThemeManager.h; path = Model/QARThemeManager.h; sourceTree = "<group>"; };
 		D94EFADA184E739E0059CCA1 /* QARThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARThemeManager.m; path = Model/QARThemeManager.m; sourceTree = "<group>"; };
 		D94EFADD184E73B70059CCA1 /* QARListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARListCell.h; path = View/QARListCell.h; sourceTree = "<group>"; };
@@ -124,6 +119,7 @@
 		D9DD689718508C6700BFF896 /* QARFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARFeedDataSource.h; path = ViewController/DataSource/QARFeedDataSource.h; sourceTree = "<group>"; };
 		D9DD689818508C6700BFF896 /* QARFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARFeedDataSource.m; path = ViewController/DataSource/QARFeedDataSource.m; sourceTree = "<group>"; };
 		D9DD689A1850B1E700BFF896 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_120.png; path = resources/images/icon_120.png; sourceTree = "<group>"; };
+		D9DD689D1850B37100BFF896 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Const.h; path = Define/Const.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				D94EFA6E184E5BAC0059CCA1 /* QiitaAdventReader */,
-				D94EFA8D184E5BAC0059CCA1 /* QiitaAdventReaderTests */,
 				D94EFA67184E5BAB0059CCA1 /* Frameworks */,
 				D94EFA66184E5BAB0059CCA1 /* Products */,
 				87E821DCD44D49EA8B359E03 /* Pods.xcconfig */,
@@ -188,6 +183,7 @@
 		D94EFA6E184E5BAC0059CCA1 /* QiitaAdventReader */ = {
 			isa = PBXGroup;
 			children = (
+				D9DD689C1850B35D00BFF896 /* Define */,
 				D94EFAE0184E73BF0059CCA1 /* ViewController */,
 				D94EFADC184E73A60059CCA1 /* View */,
 				D94EFAD8184E73930059CCA1 /* Model */,
@@ -209,24 +205,6 @@
 				D94EFA71184E5BAC0059CCA1 /* InfoPlist.strings */,
 				D94EFA74184E5BAC0059CCA1 /* main.m */,
 				D94EFA76184E5BAC0059CCA1 /* QiitaAdventReader-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D94EFA8D184E5BAC0059CCA1 /* QiitaAdventReaderTests */ = {
-			isa = PBXGroup;
-			children = (
-				D94EFA93184E5BAC0059CCA1 /* QiitaAdventReaderTests.m */,
-				D94EFA8E184E5BAC0059CCA1 /* Supporting Files */,
-			);
-			path = QiitaAdventReaderTests;
-			sourceTree = "<group>";
-		};
-		D94EFA8E184E5BAC0059CCA1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D94EFA8F184E5BAC0059CCA1 /* QiitaAdventReaderTests-Info.plist */,
-				D94EFA90184E5BAC0059CCA1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -357,6 +335,14 @@
 			name = DataSource;
 			sourceTree = "<group>";
 		};
+		D9DD689C1850B35D00BFF896 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				D9DD689D1850B37100BFF896 /* Const.h */,
+			);
+			name = Define;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -455,7 +441,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D94EFA92184E5BAC0059CCA1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +510,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D94EFA94184E5BAC0059CCA1 /* QiitaAdventReaderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,14 +538,6 @@
 				D94EFA7B184E5BAC0059CCA1 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D94EFA90184E5BAC0059CCA1 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D94EFA91184E5BAC0059CCA1 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
