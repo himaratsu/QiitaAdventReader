@@ -70,9 +70,9 @@
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="trailing" secondItem="UYs-Cw-cxt" secondAttribute="trailing" constant="10" id="KgZ-RM-uWT"/>
                                                 <constraint firstItem="pxL-oe-LIi" firstAttribute="top" secondItem="NxN-dv-EiC" secondAttribute="top" id="NFl-Eh-oW1"/>
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="leading" secondItem="UYs-Cw-cxt" secondAttribute="leading" id="Txm-jn-sMY"/>
-                                                <constraint firstItem="UYs-Cw-cxt" firstAttribute="top" secondItem="mk0-6T-lhY" secondAttribute="bottom" constant="5" id="ZLb-Rr-BhL"/>
                                                 <constraint firstItem="UYs-Cw-cxt" firstAttribute="top" secondItem="mk0-6T-lhY" secondAttribute="bottom" constant="5" id="dfd-GL-9Cr"/>
                                                 <constraint firstItem="pxL-oe-LIi" firstAttribute="leading" secondItem="mk0-6T-lhY" secondAttribute="trailing" constant="8" id="eCH-g0-HGU"/>
+                                                <constraint firstAttribute="trailing" secondItem="pxL-oe-LIi" secondAttribute="trailing" id="hRu-Qo-xlD"/>
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="top" secondItem="NxN-dv-EiC" secondAttribute="top" constant="11" id="hpS-k3-0TH"/>
                                                 <constraint firstItem="mk0-6T-lhY" firstAttribute="leading" secondItem="Rzw-n9-7D2" secondAttribute="trailing" constant="12" id="o5S-kU-AcW"/>
                                                 <constraint firstAttribute="trailing" secondItem="pxL-oe-LIi" secondAttribute="trailing" id="qRq-Hq-9Na"/>
@@ -509,7 +509,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kcp-1s-5L9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kcp-1s-5L9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -579,6 +579,26 @@
                                             <segue destination="aA9-bA-Cog" kind="push" identifier="showWeb" id="1PP-dD-bbw"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoEntryCell" rowHeight="55" id="PY8-y7-9rd">
+                                        <rect key="frame" x="0.0" y="123" width="320" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PY8-y7-9rd" id="QQm-sx-1wO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="まだお気に入りはありません." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNW-4s-dRQ">
+                                                    <rect key="frame" x="67" y="16" width="186" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="uNW-4s-dRQ" secondAttribute="centerX" id="2L7-IR-uK7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="delegate" destination="HMW-el-BJ4" id="XOi-Oi-6r3"/>
@@ -586,6 +606,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kcp-1s-5L9" firstAttribute="top" secondItem="cHT-fA-ee5" secondAttribute="bottom" id="9Vv-Cn-xHR"/>
+                            <constraint firstAttribute="trailing" secondItem="Kcp-1s-5L9" secondAttribute="trailing" id="C6J-jE-Yqi"/>
+                            <constraint firstItem="Kcp-1s-5L9" firstAttribute="leading" secondItem="UmO-dN-eeT" secondAttribute="leading" id="Oaj-LQ-KJb"/>
+                            <constraint firstAttribute="bottom" secondItem="Kcp-1s-5L9" secondAttribute="bottom" id="SKJ-Bx-mMh"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="お気に入り" id="IKf-Y6-xG4">

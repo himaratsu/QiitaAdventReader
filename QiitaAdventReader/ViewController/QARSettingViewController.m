@@ -20,6 +20,7 @@
 
 @implementation QARSettingViewController
 
+static NSString * const kQiitaAdventUrl = @"http://qiita.com/advent-calendar/2013";
 static NSString * const kOwnerTwUrl = @"https://twitter.com/himara2";
 static NSString * const kGHIssueUrl = @"https://github.com/himaratsu/QiitaAdventReader/issues";
 static NSString * const kLicenseFileName = @"license.html";
@@ -34,30 +35,48 @@ static NSString * const kLicenseFileName = @"license.html";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    if (section == 0) {
+        return 1;
+    }
+    else {
+        return 3;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"お問い合わせ";
+    if (section == 0) {
+        return @"一般";
+    }
+    else if (section == 1) {
+        return @"お問い合わせ";
+    }
+    return @"";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"開発者";
-        cell.detailTextLabel.text = @"@himara2";
+    
+    if (indexPath.section == 0) {
+        cell.textLabel.text = @"Qiita";
+        cell.detailTextLabel.text = @"Advent Calendar 2013";
     }
-    else if (indexPath.row == 1) {
-        cell.textLabel.text = @"お問い合わせ";
-        cell.detailTextLabel.text = @"GitHub";
-    }
-    else if (indexPath.row == 2) {
-        cell.textLabel.text = @"オープンソースライセンス";
-        cell.detailTextLabel.text = @"";
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"開発者";
+            cell.detailTextLabel.text = @"@himara2";
+        }
+        else if (indexPath.row == 1) {
+            cell.textLabel.text = @"お問い合わせ";
+            cell.detailTextLabel.text = @"GitHub";
+        }
+        else if (indexPath.row == 2) {
+            cell.textLabel.text = @"オープンソースライセンス";
+            cell.detailTextLabel.text = @"";
+        }
     }
     
     cell.detailTextLabel.textColor = [UIColor colorWithRed:41/255.0 green:128/255.0 blue:185/255.0 alpha:1.0];
@@ -71,15 +90,20 @@ static NSString * const kLicenseFileName = @"license.html";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kOwnerTwUrl]];
+    if (indexPath.section == 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kQiitaAdventUrl]];
     }
-    else if (indexPath.row == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kGHIssueUrl]];
-    }
-    else if (indexPath.row == 2) {
-        // show license
-        [self performSegueWithIdentifier:@"showWeb" sender:nil];
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kOwnerTwUrl]];
+        }
+        else if (indexPath.row == 1) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kGHIssueUrl]];
+        }
+        else if (indexPath.row == 2) {
+            // show license
+            [self performSegueWithIdentifier:@"showWeb" sender:nil];
+        }
     }
 }
 

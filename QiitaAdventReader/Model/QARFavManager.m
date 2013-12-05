@@ -40,10 +40,12 @@
 
 - (void)favEntry:(NSDictionary *)entry {
     [_favList addObject:entry];
+    [self saveFavList];
 }
 
 - (void)unFavEntry:(NSDictionary *)entry {
     [_favList removeObject:entry];
+    [self saveFavList];
 }
 
 - (void)fetchEntry:(NSDictionary *)entry {
@@ -57,6 +59,26 @@
 
 - (NSMutableArray *)favList {
     return [_favList copy];
+}
+
+
+
+- (void)saveFavList {
+    NSData *saveData = [NSKeyedArchiver archivedDataWithRootObject:_favList];
+    [[NSUserDefaults standardUserDefaults] setObject:saveData forKey:@"favList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSMutableArray *)loadFavList {
+    NSData *loadData = [[NSUserDefaults standardUserDefaults] objectForKey:@"favList"];
+    if (loadData != nil) {
+        NSMutableArray *loadArray = [NSKeyedUnarchiver unarchiveObjectWithData:loadData];
+        if (loadArray != nil) {
+            return loadArray;
+        }
+    }
+    
+    return [NSMutableArray array];
 }
 
 @end
