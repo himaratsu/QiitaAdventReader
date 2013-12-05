@@ -7,7 +7,9 @@
 //
 
 #import "QARSettingViewController.h"
-#import "QARWebViewController.h"
+#import "QARSimpleWebViewController.h"
+
+#import "IIViewDeckController.h"
 
 @interface QARSettingViewController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -19,8 +21,8 @@
 @implementation QARSettingViewController
 
 static NSString * const kOwnerTwUrl = @"https://twitter.com/himara2";
-static NSString * const kGHIssueUrl = @"https://twitter.com/himara2";
-static NSString * const kLicenseFileName = @"https://twitter.com/himara2";
+static NSString * const kGHIssueUrl = @"https://github.com/himaratsu/QiitaAdventReader/issues";
+static NSString * const kLicenseFileName = @"license.html";
 
 - (void)viewDidLoad
 {
@@ -39,6 +41,10 @@ static NSString * const kLicenseFileName = @"https://twitter.com/himara2";
     return 3;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"お問い合わせ";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (indexPath.row == 0) {
@@ -50,9 +56,11 @@ static NSString * const kLicenseFileName = @"https://twitter.com/himara2";
         cell.detailTextLabel.text = @"GitHub";
     }
     else if (indexPath.row == 2) {
-        cell.textLabel.text = @"LISENCES";
+        cell.textLabel.text = @"オープンソースライセンス";
         cell.detailTextLabel.text = @"";
     }
+    
+    cell.detailTextLabel.textColor = [UIColor colorWithRed:41/255.0 green:128/255.0 blue:185/255.0 alpha:1.0];
     
     return cell;
 }
@@ -68,23 +76,30 @@ static NSString * const kLicenseFileName = @"https://twitter.com/himara2";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kGHIssueUrl]];
     }
     else if (indexPath.row == 2) {
-        // TODO: ライセンス表記htmlを表示
+        // show license
         [self performSegueWithIdentifier:@"showWeb" sender:nil];
     }
 }
-
 
 #pragma mark - Storyboard
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showWeb"]) {
-        QARWebViewController *webVC = (QARWebViewController *)segue.destinationViewController;
+        QARSimpleWebViewController *webVC = (QARSimpleWebViewController *)segue.destinationViewController;
         
         NSString *filePath = [[NSBundle mainBundle] pathForResource:kLicenseFileName ofType:nil];
-        webVC.loadUrl = filePath;
-        webVC.isShowToolBar = NO;
+        webVC.title = @"オープンソースライセンス";
+        webVC.loadFilePath = filePath;
     }
 }
+
+
+#pragma mark -IBAction
+
+- (IBAction)menuBtnTouched:(id)sender {
+    [self.viewDeckController toggleLeftViewAnimated:YES];
+}
+
 
 
 @end

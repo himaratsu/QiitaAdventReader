@@ -42,6 +42,10 @@
 		D9B5A9C2184EC4C600DC5A28 /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B5A9BF184EC4C600DC5A28 /* UIAlertView+Blocks.m */; };
 		D9B5A9C4184EC87700DC5A28 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B5A9C3184EC87700DC5A28 /* Social.framework */; };
 		D9BCEA9F184F79B100D34F21 /* QARSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */; };
+		D9BDACFE185005BF003FBCCF /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = D9BDACFC185005BF003FBCCF /* license.html */; };
+		D9BDACFF185005BF003FBCCF /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D9BDACFD185005BF003FBCCF /* style.css */; };
+		D9BDAD0218501BED003FBCCF /* QARLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BDAD0118501BED003FBCCF /* QARLoadingCell.m */; };
+		D9BDAD051850227B003FBCCF /* QARSimpleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BDAD041850227B003FBCCF /* QARSimpleWebViewController.m */; };
 		E8E8F03624F5485196FDC3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3920C922EC045669486C3F7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +113,12 @@
 		D9B5A9C3184EC87700DC5A28 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D9BCEA9D184F79B100D34F21 /* QARSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARSettingViewController.h; path = ViewController/QARSettingViewController.h; sourceTree = "<group>"; };
 		D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARSettingViewController.m; path = ViewController/QARSettingViewController.m; sourceTree = "<group>"; };
+		D9BDACFC185005BF003FBCCF /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = license.html; path = resources/html/license.html; sourceTree = "<group>"; };
+		D9BDACFD185005BF003FBCCF /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = style.css; path = resources/html/style.css; sourceTree = "<group>"; };
+		D9BDAD0018501BED003FBCCF /* QARLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARLoadingCell.h; path = View/QARLoadingCell.h; sourceTree = "<group>"; };
+		D9BDAD0118501BED003FBCCF /* QARLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARLoadingCell.m; path = View/QARLoadingCell.m; sourceTree = "<group>"; };
+		D9BDAD031850227B003FBCCF /* QARSimpleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QARSimpleWebViewController.h; path = ViewController/QARSimpleWebViewController.h; sourceTree = "<group>"; };
+		D9BDAD041850227B003FBCCF /* QARSimpleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QARSimpleWebViewController.m; path = ViewController/QARSimpleWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +265,7 @@
 		D94EFAD6184E735E0059CCA1 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9BDACFB185005B2003FBCCF /* html */,
 				D94EFAC1184E70460059CCA1 /* plist */,
 				D94EFAAD184E6BE80059CCA1 /* images */,
 			);
@@ -284,6 +295,8 @@
 			children = (
 				D94EFADD184E73B70059CCA1 /* QARListCell.h */,
 				D94EFADE184E73B70059CCA1 /* QARListCell.m */,
+				D9BDAD0018501BED003FBCCF /* QARLoadingCell.h */,
+				D9BDAD0118501BED003FBCCF /* QARLoadingCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -299,6 +312,8 @@
 				D94EFAF1184E74C50059CCA1 /* QARMenuViewController.m */,
 				D9BCEA9D184F79B100D34F21 /* QARSettingViewController.h */,
 				D9BCEA9E184F79B100D34F21 /* QARSettingViewController.m */,
+				D9BDAD031850227B003FBCCF /* QARSimpleWebViewController.h */,
+				D9BDAD041850227B003FBCCF /* QARSimpleWebViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -314,6 +329,15 @@
 				D9B5A9BF184EC4C600DC5A28 /* UIAlertView+Blocks.m */,
 			);
 			name = "UIAlertView-Blocks";
+			sourceTree = "<group>";
+		};
+		D9BDACFB185005B2003FBCCF /* html */ = {
+			isa = PBXGroup;
+			children = (
+				D9BDACFC185005BF003FBCCF /* license.html */,
+				D9BDACFD185005BF003FBCCF /* style.css */,
+			);
+			name = html;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,8 +428,10 @@
 				D94EFAFD184E8CCF0059CCA1 /* Facebook@2x.png in Resources */,
 				D94EFA73184E5BAC0059CCA1 /* InfoPlist.strings in Resources */,
 				D94EFAFF184E8CCF0059CCA1 /* Next@2x.png in Resources */,
+				D9BDACFF185005BF003FBCCF /* style.css in Resources */,
 				D94EFAFE184E8CCF0059CCA1 /* Favorites@2x.png in Resources */,
 				D94EFA7C184E5BAC0059CCA1 /* Main.storyboard in Resources */,
+				D9BDACFE185005BF003FBCCF /* license.html in Resources */,
 				D94EFB02184E8CCF0059CCA1 /* Top_Charts@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,7 +486,9 @@
 			files = (
 				D9B5A9C2184EC4C600DC5A28 /* UIAlertView+Blocks.m in Sources */,
 				D94EFAED184E73E80059CCA1 /* IISideController.m in Sources */,
+				D9BDAD051850227B003FBCCF /* QARSimpleWebViewController.m in Sources */,
 				D94EFAEE184E73E80059CCA1 /* IIViewDeckController.m in Sources */,
+				D9BDAD0218501BED003FBCCF /* QARLoadingCell.m in Sources */,
 				D94EFAF2184E74C50059CCA1 /* QARMenuViewController.m in Sources */,
 				D9B5A9C0184EC4C600DC5A28 /* RIButtonItem.m in Sources */,
 				D94EFADF184E73B70059CCA1 /* QARListCell.m in Sources */,

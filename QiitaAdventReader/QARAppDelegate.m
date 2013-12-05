@@ -36,9 +36,10 @@
     UIViewController *centerController = [mystoryboard instantiateViewControllerWithIdentifier:@"Main"];
     
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:centerController leftViewController:menuController                                                                               rightViewController:nil];
-    deckController.rightSize = 100;
+    deckController.rightSize = 90;
+    deckController.openSlideAnimationDuration = 0.15;
+    deckController.closeSlideAnimationDuration = 0.25;
     
-//    [deckController disablePanOverViewsOfClass:NSClassFromString(@"_UITableViewHeaderFooterContentView")];
     return deckController;
 }
 

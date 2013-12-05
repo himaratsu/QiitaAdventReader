@@ -7,8 +7,10 @@
 //
 
 #import "QARMenuViewController.h"
+#import "QARSettingViewController.h"
 #import "QARThemeManager.h"
 #import "IIViewDeckController.h"
+
 
 @interface QARMenuViewController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -115,12 +117,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
-        // TODO: 設定画面へ
+        // show setting viewcontroller
+        UIStoryboard *mystoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *settingController = [mystoryboard instantiateViewControllerWithIdentifier:@"Setting"];
+        
+        self.viewDeckController.centerController = settingController;
         [self.viewDeckController closeLeftViewAnimated:YES];
     }
     else if (indexPath.section == 1) {
         // set selected theme
         [[QARThemeManager sharedManager] setCurrentTheme:_themeList[indexPath.row]];
+        
+        UIStoryboard *mystoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *mainViewController = [mystoryboard instantiateViewControllerWithIdentifier:@"Main"];
+        
+        self.viewDeckController.centerController = mainViewController;
         [self.viewDeckController closeLeftViewAnimated:YES];
     }
     else if (indexPath.section == 2) {

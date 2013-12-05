@@ -45,11 +45,14 @@
     _progressProxy.webViewProxyDelegate = self;
     _progressProxy.progressDelegate = self;
     
-    _toolBar.hidden = !_isShowToolBar;
-    
     // start request
-    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]];
-    [_webView loadRequest:req];
+    if (_loadUrl != nil && ![_loadUrl isEqualToString:@""]) {
+        NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:_loadUrl]];
+        [_webView loadRequest:req];
+    }
+    else {
+
+    }
 }
 
 #pragma mark - UIWebView Delegate
@@ -204,14 +207,6 @@
         }
     }];
     [self presentViewController:vc animated:YES completion:nil];
-}
-
-
-#pragma mark - Getter / Setter
-
-- (void)setIsShowToolBar:(BOOL)isShowToolBar {
-    _isShowToolBar = isShowToolBar;
-    _toolBar.hidden = !_isShowToolBar;
 }
 
 @end

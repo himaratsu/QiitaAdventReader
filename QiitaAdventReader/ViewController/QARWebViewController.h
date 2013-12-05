@@ -11,6 +11,5 @@
 @interface QARWebViewController : UIViewController
 
 @property (nonatomic) NSString *loadUrl;
-@property (nonatomic) BOOL isShowToolBar;
 
 @end

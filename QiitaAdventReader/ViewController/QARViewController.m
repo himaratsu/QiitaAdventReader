@@ -69,6 +69,10 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     }
 }
 
+- (void)dealloc {
+    [[QARThemeManager sharedManager] removeObserver:self forKeyPath:@"currentTheme"];
+}
+
 - (void)reloadData {
     if (_currentTheme == nil) {
         return ;
@@ -80,13 +84,26 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager.operationQueue cancelAllOperations];
+    
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"JSON: %@", responseObject);
-        self.feeds = responseObject[@"responseData"][@"feed"][@"entries"];
-        self.title = _currentTheme[@"title"];
-        [_tableView reloadData];
+        
+        if ([responseObject[@"responseStatus"] intValue] == 200) {
+            self.feeds = responseObject[@"responseData"][@"feed"][@"entries"];
+            self.title = _currentTheme[@"title"];
+            
+            // reload on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_tableView reloadData];
+            });
+        }
+        else {
+            // TODO: エラー処理
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // TODO: エラー処理
         NSLog(@"Error: %@", error);
     }];
     
@@ -100,24 +117,36 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_feeds count];
+    return MAX([_feeds count], 1);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *cellIdentifier;
+    if ([_feeds count] == 0) {
+        cellIdentifier = @"LoadingCell";
+    }
+    else {
+        cellIdentifier = @"Cell";
+    }
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    return cell.frame.size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([_feeds count] == 0) {
+        // 読みこみ中セルの表示
+        UITableViewCell *loadCell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+        return loadCell;
+    }
+    
+    
     NSString *dayStr = [NSString stringWithFormat:@"%.2d", [_feeds count] - indexPath.row];
     
     QARListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell.titleLabel.text = _feeds[indexPath.row][@"title"];
     cell.dateLabel.text = dayStr;
     cell.authorLabel.text = _feeds[indexPath.row][@"author"];
-    
-    // TODO: つくりたいが現行の仕様では記載されてた日時がとれない
-    // today jdge
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    dateFormatter.dateFormat = @"dd";
-//    NSDate *date = [NSDate date];
-//    NSString *todayStr = [dateFormatter stringFromDate:date];
-//    cell.isToday = [todayStr isEqualToString:dayStr];
     
     return cell;
 }
