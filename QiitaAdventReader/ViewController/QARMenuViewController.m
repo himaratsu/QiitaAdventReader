@@ -26,7 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self reloadData];
 }
 
@@ -44,7 +47,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 1;
+        return 2;
     }
     else if (section == 1) {
         return [_themeList count];
@@ -59,7 +62,6 @@
     if (section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThemeHeader"];
         return cell.frame.size.height;
-
     }
     else {
         return 0;
@@ -78,11 +80,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier;
-    if (indexPath.section == 0) {
-        cellIdentifier = @"SettingCell";
-    }
-    else if (indexPath.section == 1) {
-        cellIdentifier = @"ThemeCell";
+    if (indexPath.section == 0 || indexPath.section == 1) {
+        cellIdentifier = @"Cell";
     }
     else if (indexPath.section == 2) {
         cellIdentifier = @"GoTopCell";
@@ -94,11 +93,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"設定";
+        }
+        else if (indexPath.row == 1){
+            cell.textLabel.text = @"お気に入り";
+        }
         return cell;
     }
     else if (indexPath.section == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThemeCell"];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         cell.textLabel.text = _themeList[indexPath.row][@"title"];
         return cell;
     }
@@ -117,11 +122,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0) {
-        // show setting viewcontroller
+        NSString *storyboardId;
+        if (indexPath.row == 0) {
+            storyboardId = @"Setting";
+        }
+        else if (indexPath.row == 1) {
+            storyboardId = @"Fav";
+        }
+        // show target viewcontroller
         UIStoryboard *mystoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *settingController = [mystoryboard instantiateViewControllerWithIdentifier:@"Setting"];
-        
-        self.viewDeckController.centerController = settingController;
+        UIViewController *targetViewController = [mystoryboard instantiateViewControllerWithIdentifier:storyboardId];
+        self.viewDeckController.centerController = targetViewController;
         [self.viewDeckController closeLeftViewAnimated:YES];
     }
     else if (indexPath.section == 1) {

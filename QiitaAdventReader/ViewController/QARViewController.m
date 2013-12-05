@@ -10,19 +10,24 @@
 #import "QARListCell.h"
 #import "QARWebViewController.h"
 #import "QARThemeManager.h"
+#import "QARFavManager.h"
+#import "QARFeedDataSource.h"
 
 #import "IIViewDeckController.h"
 #import <AFNetworking.h>
 #import <AFNetworkActivityIndicatorManager.h>
 
+
+
 @interface QARViewController ()
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDelegate, QARListCellDelegate>
 {
     UIRefreshControl *_refresh;
 }
 
 @property (nonatomic) NSMutableArray *feeds;
 @property (nonatomic) NSDictionary *currentTheme;
+@property (nonatomic) QARFeedDataSource *myDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -39,6 +44,27 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     // init propery
     self.feeds = [NSMutableArray array];
     self.currentTheme = [[QARThemeManager sharedManager] currentTheme];
+    
+    // set table data source
+    configureCell blocks = ^(QARListCell *cell, NSDictionary *dict, NSString *dayStr, NSInteger indexRow) {
+        cell.titleLabel.text = dict[@"title"];
+        cell.dateLabel.text = dayStr;
+        cell.authorLabel.text = dict[@"author"];
+        cell.index = indexRow;
+        cell.delegate = self;
+        
+        if ([[QARFavManager sharedManager] isFavEntry:dict]) {
+            cell.favButton.selected = YES;
+        }
+        else {
+            cell.favButton.selected = NO;
+        }
+    };
+    
+    self.myDataSource = [[QARFeedDataSource alloc] initWithItems:_feeds
+                                                          configureCellBlock:blocks];
+    _myDataSource.currentStatus = QAR_CONNECTION_STATUS_NORMAL;
+    self.tableView.dataSource = _myDataSource;
     
     // refresh setting
     _refresh = [[UIRefreshControl alloc] init];
@@ -62,7 +88,6 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
         
         // clear feeds
         self.feeds = [NSMutableArray array];
-        self.title = @"loading...";
         [_tableView reloadData];
         
         [self reloadData];
@@ -79,6 +104,8 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     }
     
     [_refresh beginRefreshing];
+    self.title = @"loading...";
+    _myDataSource.currentStatus = QAR_CONNECTION_STATUS_LOADING;
     
     NSString *url = [NSString stringWithFormat:kApiBaseFormat, _currentTheme[@"feed_url"]];
     
@@ -86,44 +113,50 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.operationQueue cancelAllOperations];
     
+    
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         NSLog(@"JSON: %@", responseObject);
         
         if ([responseObject[@"responseStatus"] intValue] == 200) {
+            _myDataSource.currentStatus = QAR_CONNECTION_STATUS_NORMAL;
             self.feeds = responseObject[@"responseData"][@"feed"][@"entries"];
             self.title = _currentTheme[@"title"];
-            
-            // reload on main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_tableView reloadData];
-            });
-        }
-        else {
-            // TODO: エラー処理
         }
         
+        // reload on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tableView reloadData];
+        });
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // TODO: エラー処理
-        NSLog(@"Error: %@", error);
+        // error
+        self.title = @"Sorry.";
+        _myDataSource.currentStatus = QAR_CONNECTION_STATUS_ERROR;
+        
+        // reload on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tableView reloadData];
+        });
     }];
     
     [_refresh endRefreshing];
 }
 
-#pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return MAX([_feeds count], 1);
-}
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier;
     if ([_feeds count] == 0) {
-        cellIdentifier = @"LoadingCell";
+        if (_myDataSource.currentStatus == QAR_CONNECTION_STATUS_NORMAL) {
+            cellIdentifier = @"NoEntryCell";
+        }
+        else if (_myDataSource.currentStatus == QAR_CONNECTION_STATUS_LOADING) {
+            cellIdentifier = @"LoadingCell";
+        }
+        else if (_myDataSource.currentStatus == QAR_CONNECTION_STATUS_ERROR) {
+            cellIdentifier = @"ErrorCell";
+        }
     }
     else {
         cellIdentifier = @"Cell";
@@ -133,29 +166,20 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     return cell.frame.size.height;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_feeds count] == 0) {
-        // 読みこみ中セルの表示
-        UITableViewCell *loadCell = [tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
-        return loadCell;
-    }
-    
-    
-    NSString *dayStr = [NSString stringWithFormat:@"%.2d", [_feeds count] - indexPath.row];
-    
-    QARListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    cell.titleLabel.text = _feeds[indexPath.row][@"title"];
-    cell.dateLabel.text = dayStr;
-    cell.authorLabel.text = _feeds[indexPath.row][@"author"];
-    
-    return cell;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
-#pragma mark - UITableViewDelegate
+#pragma mark - QARListCellDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+- (void)didTapFavBtn:(NSInteger)index {
+    NSDictionary *feed = _feeds[index];
+    
+    // fav/unfav
+    [[QARFavManager sharedManager] fetchEntry:feed];
+    
+    [_tableView reloadData];
 }
 
 
@@ -176,5 +200,12 @@ static NSString * const kApiBaseFormat = @"https://ajax.googleapis.com/ajax/serv
     [self.viewDeckController toggleLeftViewAnimated:YES];
 }
 
+
+#pragma mark - Getter / Setter
+
+- (void)setFeeds:(NSMutableArray *)feeds {
+    _feeds = feeds;
+    _myDataSource.feeds = _feeds;
+}
 
 @end
