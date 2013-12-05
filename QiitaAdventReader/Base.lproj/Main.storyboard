@@ -178,7 +178,7 @@
         <!--Web View Controller - loading...-->
         <scene sceneID="7vj-Re-YVP">
             <objects>
-                <viewController id="aA9-bA-Cog" customClass="QARWebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebView" id="aA9-bA-Cog" customClass="QARWebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSh-yB-RA1"/>
                         <viewControllerLayoutGuide type="bottom" id="PAV-vt-fb3"/>
@@ -631,7 +631,7 @@
                             <color key="tintColor" red="0.20392156859999999" green="0.62027469759999998" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Kcp-1s-5L9" id="uFM-mM-vXC"/>
                     </connections>
@@ -695,6 +695,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pcr-fr-Hhs"/>
+        <segue reference="1PP-dD-bbw"/>
     </inferredMetricsTieBreakers>
 </document>

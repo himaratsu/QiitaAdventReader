@@ -8,10 +8,12 @@
 
 #import "QARAppDelegate.h"
 #import "IIViewDeckController.h"
+#import "QARWebViewController.h"
 
 #import "Const.h"
 #import <PocketAPI.h>
 #import <Parse/Parse.h>
+#import "UIAlertView+Blocks.h"
 
 @implementation QARAppDelegate
 
@@ -21,7 +23,7 @@
     [Parse setApplicationId:PARSE_API_KEY
                   clientKey:PARSE_CLIENT_KEY];
     
-    // push notif.
+    // push notif. setting
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge|
      UIRemoteNotificationTypeAlert|
@@ -33,12 +35,22 @@
     [self.window makeKeyAndVisible];
     
     // Appearance
-    //ナビゲーションバーのタイトルの色
+    // navigation title
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1.0],UITextAttributeTextColor, nil]];
     
-
-    //ナビゲーションバー内のコントロールの色
+    // navigation control
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    
+    // handle push notif.
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo != nil) {
+        // open entry
+        NSDictionary *entry = userInfo[@"entry"];
+        [self openUrl:entry[@"url"]];
+    }
+    
+    // reset badge number
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     return YES;
 }
@@ -81,7 +93,43 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    // on foreground
+    if (application.applicationState == UIApplicationStateActive) {
+        if ([[userInfo allKeys] containsObject:@"entry"]) {
+            // open
+            RIButtonItem *openItem = [RIButtonItem itemWithLabel:@"開く" action:^{
+                NSDictionary *entry = userInfo[@"entry"];
+                [self openUrl:entry[@"url"]];
+            }];
+            
+            // close
+            RIButtonItem *cancelItem = [RIButtonItem itemWithLabel:@"キャンセル"];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"お知らせ"
+                                                            message:userInfo[@"aps"][@"alert"]
+                                                   cancelButtonItem:cancelItem
+                                                   otherButtonItems:openItem, nil];
+            [alert show];
+        }
+    }
+    // from background
+    else {
+        NSDictionary *entry = userInfo[@"entry"];
+        [self openUrl:entry[@"url"]];
+    }
+    
+}
+
+
+- (void)openUrl:(NSString *)url {
+    UIStoryboard *mystoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    QARWebViewController *webVC = [mystoryboard instantiateViewControllerWithIdentifier:@"WebView"];
+    webVC.loadUrl = url;
+    
+    IIViewDeckController *viewDeckController = (IIViewDeckController *)self.window.rootViewController;
+    [((UINavigationController *)viewDeckController.centerController)
+     pushViewController:webVC
+     animated:YES];
 }
 
 
