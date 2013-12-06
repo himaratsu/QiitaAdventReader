@@ -22,7 +22,7 @@
 @implementation QARSettingViewController
 
 static NSString * const kQiitaAdventUrl = @"http://qiita.com/advent-calendar/2013";
-static NSString * const kAppStoreUrl = @"";
+static NSString * const kAppStoreUrl = @"itms-apps://itunes.apple.com/jp/app/id775411001";
 static NSString * const kGHIssueUrl = @"https://github.com/himaratsu/QiitaAdventReader/issues";
 static NSString * const kLicenseFileName = @"license.html";
 
