@@ -144,13 +144,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9FDEC241850EE57000DF58A /* Parse.framework in Frameworks */,
 				D9FDEC2C1850EF03000DF58A /* libCrittercism_v4_1_2.a in Frameworks */,
 				D9DD68B21850C8A700BFF896 /* Social.framework in Frameworks */,
 				D9DD68B11850B59F00BFF896 /* SystemConfiguration.framework in Frameworks */,
 				D9DD68AF1850B59100BFF896 /* StoreKit.framework in Frameworks */,
 				D9DD68AD1850B58A00BFF896 /* Security.framework in Frameworks */,
 				D9DD68AB1850B58200BFF896 /* QuartzCore.framework in Frameworks */,
-				D9FDEC241850EE57000DF58A /* Parse.framework in Frameworks */,
 				D9DD68A91850B57C00BFF896 /* MobileCoreServices.framework in Frameworks */,
 				D9DD68A71850B57700BFF896 /* libz.1.1.3.dylib in Frameworks */,
 				D9DD68A51850B57100BFF896 /* CoreLocation.framework in Frameworks */,
@@ -635,6 +635,7 @@
 					"$(inherited)",
 					/Users/rhiramat/Documents/objc/QiitaAdventReader,
 					/Users/rhiramat/Documents/objc/QiitaAdventReader/QiitaAdventReader/Framework,
+					/Users/himara2/Documents/objc/QiitaAdventReader/QiitaAdventReader/Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiitaAdventReader/QiitaAdventReader-Prefix.pch";
@@ -678,6 +679,7 @@
 					"$(inherited)",
 					/Users/rhiramat/Documents/objc/QiitaAdventReader,
 					/Users/rhiramat/Documents/objc/QiitaAdventReader/QiitaAdventReader/Framework,
+					/Users/himara2/Documents/objc/QiitaAdventReader/QiitaAdventReader/Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QiitaAdventReader/QiitaAdventReader-Prefix.pch";
